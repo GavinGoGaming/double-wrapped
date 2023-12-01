@@ -3,32 +3,41 @@
 <head>
 <title>double.wrapped</title>
 <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
+  <style>
+    html,body {
+      background-color: #111;
+      vertical-align: baseline;
+      width: 100vw;
+      height: 100vh;
+      font-family: var(--body-font);
+    }
+  </style>
 </head>
 
 <body>
+  <fluent-design-system-provider style="width:100vw;height:100vh;">
   <h1>double wrapped</h1>
   <h3>a wrapper for spotify's wrapped</h3>
   <fluent-checkbox checked>Double Wrapped</fluent-checkbox><br/>
-  <fluent-button onclick="document.querySelector('iframe').src = 'https://www.spotify.com/us/wrapped/'">See my Wrapped</fluent-button>
-  <iframe width=362 height=644>
+  <fluent-button onclick="document.querySelector('iframe').src = 'https://www.spotify.com/us/wrapped/';document.querySelector('iframe').style.display='block';">See my Wrapped</fluent-button><br/>
+  <iframe width=362 height=644 style='display:none'>
   </iframe>
+  </fluent-design-system-provider>
   <script type="module">
     import {
-        provideFluentDesignSystem,
-        fluentCheckbox,
-        fluentButton
-    } from "@fluentui/web-components";
+      StandardLuminance,
+      baseLayerLuminance,
+      fillColor,
+      allComponents,
+      provideFluentDesignSystem
+    } from "https://unpkg.com/@fluentui/web-components@2.0.0";
     
-    provideFluentDesignSystem()
-        .register(
-            fluentCheckbox({
-                checkedIndicator: `...your checked indicator...`,
-                indeterminateIndicator: `...your indeterminate indicator...`,
-            })
-        )
-    .register(
-        fluentButton()
-    );
+    provideFluentDesignSystem().register(allComponents);
+    
+    const layer = document.querySelector("fluent-design-system-provider");
+    
+    baseLayerLuminance.setValueFor(layer, StandardLuminance.DarkMode);
+
   </script>
 </body>
 
