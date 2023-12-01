@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>double.wrapped</title>
+<script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
+</head>
+
+<body>
+  <h1>double wrapped</h1>
+  <h3>a wrapper for spotify's wrapped</h3>
+  <fluent-checkbox checked>Double Wrapped</fluent-checkbox><br/>
+  <fluent-button onclick="document.querySelector('iframe').src = 'https://www.spotify.com/us/wrapped/'">See my Wrapped</fluent-button>
+  <iframe width=362 height=644>
+  </iframe>
+  <script type="module">
+    import {
+        provideFluentDesignSystem,
+        fluentCheckbox,
+        fluentButton
+    } from "@fluentui/web-components";
+    
+    provideFluentDesignSystem()
+        .register(
+            fluentCheckbox({
+                checkedIndicator: `...your checked indicator...`,
+                indeterminateIndicator: `...your indeterminate indicator...`,
+            })
+        )
+    .register(
+        fluentButton()
+    );
+  </script>
+</body>
+
+</html>
